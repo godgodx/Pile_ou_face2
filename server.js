@@ -1,9 +1,9 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mysql = require("mysql2");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const cors = require("cors");
+import express from "express";
+import bodyParser from "body-parser";
+import mysql from "mysql2";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import cors from "cors";
 
 const app = express();
 const PORT = 3000;
@@ -20,7 +20,7 @@ const db = mysql.createConnection({
   database: "pile_ou_face",
 });
 
-// Connexion à la base de données
+// Connexion a la base de données
 db.connect((err) => {
   if (err) {
     console.error("Erreur de connexion à la base de données :", err);
@@ -32,7 +32,7 @@ db.connect((err) => {
 const JWT_SECRET = "1234";
 
 // Route pour la connexion
-app.post("/api/login", (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
